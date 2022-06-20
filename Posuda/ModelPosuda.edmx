@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PosudaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategorySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MakersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrdersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProduct" Type="int" />
+          <Property Name="idPoint" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="PointsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="OfficeHours" Type="nvarchar(max)" />
+          <Property Name="Days" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="IdCategory" Type="int" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IdMaker" Type="int" />
+          <Property Name="Сount" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <Association Name="FK_OrdersSet_PointsSet">
+          <End Role="PointsSet" Type="Self.PointsSet" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersSet_ProductsSet">
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersSet_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsSet_CategorySet">
+          <End Role="CategorySet" Type="Self.CategorySet" Multiplicity="0..1" />
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsSet">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsSet_MakersSet">
+          <End Role="MakersSet" Type="Self.MakersSet" Multiplicity="0..1" />
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MakersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsSet">
+              <PropertyRef Name="IdMaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PosudaModelContainer">
+          <EntitySet Name="CategorySet" EntityType="Self.CategorySet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MakersSet" EntityType="Self.MakersSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersSet" EntityType="Self.OrdersSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointsSet" EntityType="Self.PointsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsSet" EntityType="Self.ProductsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrdersSet_PointsSet" Association="Self.FK_OrdersSet_PointsSet">
+            <End Role="PointsSet" EntitySet="PointsSet" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersSet_ProductsSet" Association="Self.FK_OrdersSet_ProductsSet">
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersSet_Users" Association="Self.FK_OrdersSet_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsSet_CategorySet" Association="Self.FK_ProductsSet_CategorySet">
+            <End Role="CategorySet" EntitySet="CategorySet" />
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsSet_MakersSet" Association="Self.FK_ProductsSet_MakersSet">
+            <End Role="MakersSet" EntitySet="MakersSet" />
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PosudaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategorySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductsSet" Relationship="Self.FK_ProductsSet_CategorySet" FromRole="CategorySet" ToRole="ProductsSet" />
+        </EntityType>
+        <EntityType Name="MakersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductsSet" Relationship="Self.FK_ProductsSet_MakersSet" FromRole="MakersSet" ToRole="ProductsSet" />
+        </EntityType>
+        <EntityType Name="OrdersSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProduct" Type="Int32" />
+          <Property Name="idPoint" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="PointsSet" Relationship="Self.FK_OrdersSet_PointsSet" FromRole="OrdersSet" ToRole="PointsSet" />
+          <NavigationProperty Name="ProductsSet" Relationship="Self.FK_OrdersSet_ProductsSet" FromRole="OrdersSet" ToRole="ProductsSet" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_OrdersSet_Users" FromRole="OrdersSet" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PointsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeHours" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Days" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrdersSet" Relationship="Self.FK_OrdersSet_PointsSet" FromRole="PointsSet" ToRole="OrdersSet" />
+        </EntityType>
+        <EntityType Name="ProductsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdMaker" Type="Int32" />
+          <Property Name="Сount" Type="Int32" />
+          <NavigationProperty Name="CategorySet" Relationship="Self.FK_ProductsSet_CategorySet" FromRole="ProductsSet" ToRole="CategorySet" />
+          <NavigationProperty Name="MakersSet" Relationship="Self.FK_ProductsSet_MakersSet" FromRole="ProductsSet" ToRole="MakersSet" />
+          <NavigationProperty Name="OrdersSet" Relationship="Self.FK_OrdersSet_ProductsSet" FromRole="ProductsSet" ToRole="OrdersSet" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="OrdersSet" Relationship="Self.FK_OrdersSet_Users" FromRole="Users" ToRole="OrdersSet" />
+        </EntityType>
+        <Association Name="FK_ProductsSet_CategorySet">
+          <End Role="CategorySet" Type="Self.CategorySet" Multiplicity="0..1" />
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsSet">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsSet_MakersSet">
+          <End Role="MakersSet" Type="Self.MakersSet" Multiplicity="0..1" />
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MakersSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsSet">
+              <PropertyRef Name="IdMaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersSet_PointsSet">
+          <End Role="PointsSet" Type="Self.PointsSet" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersSet_ProductsSet">
+          <End Role="ProductsSet" Type="Self.ProductsSet" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersSet_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OrdersSet" Type="Self.OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersSet">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PosudaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategorySet" EntityType="Self.CategorySet" />
+          <EntitySet Name="MakersSet" EntityType="Self.MakersSet" />
+          <EntitySet Name="OrdersSet" EntityType="Self.OrdersSet" />
+          <EntitySet Name="PointsSet" EntityType="Self.PointsSet" />
+          <EntitySet Name="ProductsSet" EntityType="Self.ProductsSet" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_ProductsSet_CategorySet" Association="Self.FK_ProductsSet_CategorySet">
+            <End Role="CategorySet" EntitySet="CategorySet" />
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsSet_MakersSet" Association="Self.FK_ProductsSet_MakersSet">
+            <End Role="MakersSet" EntitySet="MakersSet" />
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersSet_PointsSet" Association="Self.FK_OrdersSet_PointsSet">
+            <End Role="PointsSet" EntitySet="PointsSet" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersSet_ProductsSet" Association="Self.FK_OrdersSet_ProductsSet">
+            <End Role="ProductsSet" EntitySet="ProductsSet" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersSet_Users" Association="Self.FK_OrdersSet_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrdersSet" EntitySet="OrdersSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PosudaModelContainer" CdmEntityContainer="PosudaEntities">
+          <EntitySetMapping Name="CategorySet">
+            <EntityTypeMapping TypeName="PosudaModel.CategorySet">
+              <MappingFragment StoreEntitySet="CategorySet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MakersSet">
+            <EntityTypeMapping TypeName="PosudaModel.MakersSet">
+              <MappingFragment StoreEntitySet="MakersSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersSet">
+            <EntityTypeMapping TypeName="PosudaModel.OrdersSet">
+              <MappingFragment StoreEntitySet="OrdersSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idPoint" ColumnName="idPoint" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointsSet">
+            <EntityTypeMapping TypeName="PosudaModel.PointsSet">
+              <MappingFragment StoreEntitySet="PointsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OfficeHours" ColumnName="OfficeHours" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsSet">
+            <EntityTypeMapping TypeName="PosudaModel.ProductsSet">
+              <MappingFragment StoreEntitySet="ProductsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdMaker" ColumnName="IdMaker" />
+                <ScalarProperty Name="Сount" ColumnName="Сount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PosudaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
