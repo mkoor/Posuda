@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="156eb0ea071e4b358710e5ef8775e662" Name="Diagram1">
+      <Diagram DiagramId="bf6ea48292384d5b944b2a7a5a804ff6" Name="Diagram1">
         <EntityTypeShape EntityType="PosudaModel.CategorySet" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PosudaModel.MakersSet" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PosudaModel.OrdersSet" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />

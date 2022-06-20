@@ -21,6 +21,7 @@ namespace Posuda
             labelDescription.Text = $"{productsSet.Description}";
             labelMaker.Text = "Производитель: " + $"{productsSet.MakersSet.Title}";
             labelPrice.Text = $"{productsSet.Price}" + " руб.";
+            if (productsSet.Photo != null) { pictureBox1.Load($"../../Resources/{productsSet.Photo}");}
             if (productsSet.Сount == 0) { BackColor = Color.Gray; button1.Enabled = false; }
         }
         public UserControlProducts()

@@ -189,6 +189,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\laborant_1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelPosuda.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelPosuda.edmx</DependentUpon>
@@ -199,7 +202,8 @@
       <DependentUpon>ModelPosuda.edmx</DependentUpon>
       <LastGenOutput>ModelPosuda.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\laborant_1.jpeg" />
+    <Content Include="Resources\laborant_2.png" />
+    <Content Include="Resources\Администратор.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

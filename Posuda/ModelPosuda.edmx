@@ -46,10 +46,10 @@
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="IdCategory" Type="int" />
           <Property Name="Price" Type="float" />
-          <Property Name="Photo" Type="image" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="IdMaker" Type="int" />
           <Property Name="Сount" Type="int" />
+          <Property Name="Photo" Type="text" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -206,10 +206,10 @@
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdCategory" Type="Int32" />
           <Property Name="Price" Type="Double" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdMaker" Type="Int32" />
           <Property Name="Сount" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CategorySet" Relationship="Self.FK_ProductsSet_CategorySet" FromRole="ProductsSet" ToRole="CategorySet" />
           <NavigationProperty Name="MakersSet" Relationship="Self.FK_ProductsSet_MakersSet" FromRole="ProductsSet" ToRole="MakersSet" />
           <NavigationProperty Name="OrdersSet" Relationship="Self.FK_OrdersSet_ProductsSet" FromRole="ProductsSet" ToRole="OrdersSet" />
@@ -368,10 +368,10 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IdMaker" ColumnName="IdMaker" />
                 <ScalarProperty Name="Сount" ColumnName="Сount" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -24,10 +24,10 @@ namespace Posuda
         public string Title { get; set; }
         public Nullable<int> IdCategory { get; set; }
         public Nullable<double> Price { get; set; }
-        public byte[] Photo { get; set; }
         public string Description { get; set; }
         public Nullable<int> IdMaker { get; set; }
         public Nullable<int> Сount { get; set; }
+        public string Photo { get; set; }
     
         public virtual CategorySet CategorySet { get; set; }
         public virtual MakersSet MakersSet { get; set; }
