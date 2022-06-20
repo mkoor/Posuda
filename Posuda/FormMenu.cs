@@ -64,8 +64,10 @@ namespace Posuda
                 });
                 item.Tag = productsSet;
                 listViewProducts.Items.Add(item);
+              
             }
             listViewProducts.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+         
         }
 
         private void label1_Click(object sender, EventArgs e)

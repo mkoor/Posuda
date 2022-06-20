@@ -14,17 +14,18 @@ namespace Posuda
     {
         public FormProd()
         {
-            InitializeComponent();
-            
-            labelTitle.Text = FormMenu.pr.title;
-            labelCategory.Text = FormMenu.pr.category;
-            labelCount.Text = FormMenu.pr.count;
-            labelDescription.Text = FormMenu.pr.description;
-            labelMaker.Text = FormMenu.pr.maker;
-            labelPrice.Text = FormMenu.pr.price;
+            InitializeComponent();            
         }
 
         private void FormProd_Load(object sender, EventArgs e)
+        {
+            foreach (ProductsSet productsSet in Program.pos.ProductsSet)
+            {
+                flowLayoutPanelProducts.Controls.Add(new UserControlProducts(productsSet));
+            }
+        }
+
+        private void flowLayoutPanelProducts_Paint(object sender, PaintEventArgs e)
         {
 
         }
